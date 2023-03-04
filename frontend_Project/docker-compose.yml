@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  front:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    volumes:
+      - .:/usr/src/app:cached
+    command: sh -c "cd react-front&&  npm install -g npm@latest&&npm cache clean --force&&npm rm -rf node_modules && rm package-lock.json&&npm install&&npm start"
+    ports:
+      - "3000:3000"
